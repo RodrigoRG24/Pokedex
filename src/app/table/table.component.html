@@ -1,0 +1,28 @@
+<nz-table #basicTable
+   [nzData]="listOfPokemon"
+   [nzPageSize]="4"
+   [nzPaginationPosition]="'bottom'"
+   [nzShowPagination]="true">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Pokedex</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>
+        <img [src]="data.photo" alt="{{ data.name }}" width="50">
+      </td>
+      <td>{{ data.id }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.type }}</td>
+      <td>
+        <button nz-button nzDanger="primary" (click)="removeFromFavorites(data)">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

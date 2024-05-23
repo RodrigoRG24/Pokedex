@@ -1,0 +1,23 @@
+<div style="padding: 20px;">
+    <nz-input-group [nzSuffix]="suffixButton">
+      <input type="text" nz-input placeholder="Search Pokémon by name or Pokédex number" [(ngModel)]="searchTerm" (keyup.enter)="search()" />
+    </nz-input-group>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary" nzSearch (click)="search()">Buscar</button>
+    </ng-template>
+  
+    <nz-spin [nzSpinning]="isLoading">
+      <nz-list *ngIf="pokemon">
+        <nz-list-item>
+          <nz-list-item-meta
+            [nzAvatar]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemon.id + '.png'"
+            [nzTitle]="pokemon.name | titlecase"
+            [nzDescription]="'Tipo: ' + getPokemonTypes(pokemon) + ', Número de Pokédex: ' + pokemon.id">
+          </nz-list-item-meta>
+        </nz-list-item>
+        <button nz-button nzType="default" (click)="addToFavorites()">Add to favs</button>
+      </nz-list>
+      <p *ngIf="error">{{ error }}</p>
+    </nz-spin>
+  </div>
+  
